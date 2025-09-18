@@ -30,15 +30,15 @@ object[] arr = {
     4, 1, false, true, true, -200, 5, 5, 1, 1, 1, 1
 }; // Массив с элементами разных типов
 
-var hm = new Dictionary<string, int>(); // Словарь: тип → количество
+var freq = new Dictionary<string, int>(); // Словарь: тип → количество
 
 foreach (var elem in arr) {
     string type = elem.GetType().Name;
-    if (!hm.ContainsKey(type)) hm[type] = 1; // Если тип ещё не встречался — добавляем
-    else hm[type]++; // Иначе увеличиваем счётчик
+    if (!freq.ContainsKey(type)) freq[type] = 1; // Если тип ещё не встречался — добавляем
+    else freq[type]++; // Иначе увеличиваем счётчик
 }
 
-foreach (var kv in hm)
+foreach (var kv in freq)
     Console.WriteLine($"{kv.Key}: {kv.Value}"); // Выводим тип и его количество
 
 ```
