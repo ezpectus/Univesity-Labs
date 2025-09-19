@@ -11,8 +11,8 @@
 using namespace std;
 
 //Идентификаторы
-string name = "Denis";
-const int birthYear = 1998;
+string name = "Denys";
+const int birthYear = 2006;
 
 void greet(const string& name) {
     cout << "Hello, " << name << endl;
@@ -70,7 +70,7 @@ struct Contact {
 
 vector<Contact> phoneBook = {
     {"Marcus Aurelius", "+380445554433"},
-    {"Denis", "+447123456789"}
+    {"Denys", "+447123456789"}
 };
 
 string findPhoneByNameArray(const string& name) {
@@ -81,7 +81,7 @@ string findPhoneByNameArray(const string& name) {
 
 map<string, string> phoneHash = {
     {"Marcus Aurelius", "+380445554433"},
-    {"Denis", "+447123456789"}
+    {"Denys", "+447123456789"}
 };
 
 string findPhoneByNameHash(const string& name) {
@@ -97,7 +97,7 @@ int main() {
     User u = createUser("Marcus Aurelius", "Roma");
     cout << "User: " << u.name << ", " << u.city << endl;
 
-    cout << findPhoneByNameArray("Denis") << endl;
+    cout << findPhoneByNameArray("Denys") << endl;
     cout << findPhoneByNameHash("Marcus Aurelius") << endl;
 
     return 0;
