@@ -55,11 +55,12 @@ y(x) = x³ + 14, якщо x ∈ [-2, 2] не визначено, інакше
 # 🧮 Варіант 1 — Без логічних операторів
 
 ```c
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main() {
     int x;
-    scanf("%d", &x);
+    scanf_s("%d", &x);
 
     int y;
     int ops = 0;
@@ -68,7 +69,7 @@ int main() {
         if (x <= 7) { ops++;
             y = x * x * x + 14; ops += 2;
             printf("y = %d\n", y);
-            printf("Операцій: %d\n", ops);
+            printf("Operations: %d\n", ops);
             return 0;
         }
     }
@@ -76,30 +77,31 @@ int main() {
     if (x <= -3) { ops++;
         y = -4 * x * x * x + 3 * x - 7; ops += 4;
         printf("y = %d\n", y);
-        printf("Операцій: %d\n", ops);
+        printf("Operations: %d\n", ops);
         return 0;
     }
 
     if (x > -1) { ops++;
         y = -4 * x * x * x + 3 * x - 7; ops += 4;
         printf("y = %d\n", y);
-        printf("Операцій: %d\n", ops);
+        printf("Operations: %d\n", ops);
         return 0;
     }
 
-    printf("Функція не визначена для заданого x\n");
-    printf("Операцій: %d\n", ops);
+    printf("Function is none x\n");
+    printf("Operations: %d\n", ops);
     return 0;
 }
 ```
 
 ## 🧠 Варіант 2 — З логічними операціями
 ```c
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main() {
     int x;
-    scanf("%d", &x);
+    scanf_s("%d", &x);
 
     int y;
     int ops = 0;
@@ -111,10 +113,10 @@ int main() {
         y = -4 * x * x * x + 3 * x - 7; ops += 4;
         printf("y = %d\n", y);
     } else {
-        printf("Функція не визначена для заданого x\n");
+        printf("Functions is none x\n");
     }
 
-    printf("Операцій: %d\n", ops);
+    printf("Operations: %d\n", ops);
     return 0;
 }
 
