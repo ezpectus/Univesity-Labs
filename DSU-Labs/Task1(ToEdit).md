@@ -57,7 +57,7 @@ y(x) = -4x^3 + 3x- 7 , якщо x ∈ [-13,-3] U [14, +infinity]
 # 🧮 Варіант 1 — Без логічних операторів
 
 ```c
-// variant1_no_logical.c
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main(void) {
@@ -129,7 +129,7 @@ int main(void) {
 
 ## 🧠 Варіант 2 — З логічними операціями
 ```c
-// variant2_with_logical.c
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int main(void) {
