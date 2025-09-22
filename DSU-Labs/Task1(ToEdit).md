@@ -62,6 +62,7 @@ y(x) = -4x^3 + 3x- 7 , якщо x ∈ [-13,-3] U [14, +infinity]
 
 int main() {
     int x;
+   printf("Write number x:\n");
     scanf_s("%d", &x);
 
     int y;
@@ -103,6 +104,7 @@ int main() {
 
 int main() {
     int x;
+   printf("Write number x:\n");
     scanf_s("%d", &x);
 
     int y;
