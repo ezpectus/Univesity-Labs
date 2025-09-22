@@ -57,73 +57,122 @@ y(x) = -4x^3 + 3x- 7 , якщо x ∈ [-13,-3] U [14, +infinity]
 # 🧮 Варіант 1 — Без логічних операторів
 
 ```c
-#define _CRT_SECURE_NO_WARNINGS
+// variant1_no_logical.c
 #include <stdio.h>
 
-int main() {
+int main(void) {
     int x;
-   printf("Write number x:\n");
-    scanf_s("%d", &x);
+    if (printf("Write integer x: ") < 0) return 0;
+    if (scanf("%d", &x) != 1) return 0;
 
     int y;
-    int ops = 0;
+    int ops = 0; // счётчик операций (приблизительно): сравнения + арифметика
 
-    if (x >= 2) { ops++;
-        if (x <= 7) { ops++;
-            y = x * x * x + 14; ops += 2;
+    // Проверка на интервал [2,7] без логических операторов
+    ops++; // сравнение x >= 2
+    if (x >= 2) {
+        ops++; // сравнение x <= 7
+        if (x <= 7) {
+            // y = x^3 + 14
+            ops += 2; // два умножения для x*x*x
+            int x2 = x * x;       // 1 умножение
+            int x3 = x2 * x;      // 2 умножения
+            y = x3 + 14;          // 1 сложение
+            ops += 1;
             printf("y = %d\n", y);
-            printf("Operations: %d\n", ops);
+            printf("Operations (approx): %d\n", ops);
             return 0;
         }
     }
 
-    if (x <= -3) { ops++;
-        y = -4 * x * x * x + 3 * x - 7; ops += 4;
+    // Проверка интервала [-13, -3] — делаем сравнение x >= -13 и x <= -3
+    ops++; // сравнение x >= -13
+    if (x >= -13) {
+        ops++; // сравнение x <= -3
+        if (x <= -3) {
+            // y = -4*x^3 + 3*x - 7
+            ops += 4; // три умножения + одно сложение/вычитание
+            int x2 = x * x;           // 1
+            int x3 = x2 * x;          // 2
+            int part1 = -4 * x3;      // 3 (умножение)
+            int part2 = 3 * x;        // 4 (умножение)
+            y = part1 + part2 - 7;    // 2 операций (сложение и вычитание), учтено ранее частично
+            // добавим 2 на сложение/вычитание
+            ops += 2;
+            printf("y = %d\n", y);
+            printf("Operations (approx): %d\n", ops);
+            return 0;
+        }
+    }
+
+    // Проверка интервала [14, +inf) (только x >= 14)
+    ops++; // сравнение x >= 14
+    if (x >= 14) {
+        ops += 4; // оценки арифметики как выше
+        int x2 = x * x;
+        int x3 = x2 * x;
+        int part1 = -4 * x3;
+        int part2 = 3 * x;
+        y = part1 + part2 - 7;
+        ops += 2;
         printf("y = %d\n", y);
-        printf("Operations: %d\n", ops);
+        printf("Operations (approx): %d\n", ops);
         return 0;
     }
 
-    if (x > -1) { ops++;
-        y = -4 * x * x * x + 3 * x - 7; ops += 4;
-        printf("y = %d\n", y);
-        printf("Operations: %d\n", ops);
-        return 0;
-    }
-
-    printf("Function is none x\n");
-    printf("Operations: %d\n", ops);
+    // Иначе — не определено
+    printf("Function is not defined for x = %d\n", x);
+    printf("Operations (approx): %d\n", ops);
     return 0;
 }
 ```
 
 ## 🧠 Варіант 2 — З логічними операціями
 ```c
-#define _CRT_SECURE_NO_WARNINGS
+// variant2_with_logical.c
 #include <stdio.h>
 
-int main() {
+int main(void) {
     int x;
-   printf("Write number x:\n");
-    scanf_s("%d", &x);
+    if (printf("Write integer x: ") < 0) return 0;
+    if (scanf("%d", &x) != 1) return 0;
 
     int y;
-    int ops = 0;
+    int ops = 0; // прибл. счётчик: сравнения + арифметика
 
-    if (x >= 2 && x <= 7) { ops += 2;
-        y = x * x * x + 14; ops += 2;
+    // Интервал [2,7]
+    ops += 2; // два сравнения в условии
+    if (x >= 2 && x <= 7) {
+        // y = x^3 + 14
+        ops += 2; // два умножения
+        int x2 = x * x;
+        int x3 = x2 * x;
+        y = x3 + 14;
+        ops += 1; // сложение
         printf("y = %d\n", y);
-    } else if (x <= -3 || x > -1) { ops += 2;
-        y = -4 * x * x * x + 3 * x - 7; ops += 4;
-        printf("y = %d\n", y);
-    } else {
-        printf("Functions is none x\n");
+        printf("Operations (approx): %d\n", ops);
+        return 0;
     }
 
-    printf("Operations: %d\n", ops);
+    // Интервалы [-13,-3] или [14, +inf)
+    ops += 2; // два сравнения внутри || выражения (оценка приближенная)
+    if ((x >= -13 && x <= -3) || (x >= 14)) {
+        // y = -4*x^3 + 3*x - 7
+        ops += 4; // умножения + операции над частями
+        int x2 = x * x;
+        int x3 = x2 * x;
+        int part1 = -4 * x3;
+        int part2 = 3 * x;
+        y = part1 + part2 - 7;
+        ops += 2;
+        printf("y = %d\n", y);
+    } else {
+        printf("Function is not defined for x = %d\n", x);
+    }
+
+    printf("Operations (approx): %d\n", ops);
     return 0;
 }
-
 
 ```
 
